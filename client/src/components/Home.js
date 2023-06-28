@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function Home() {
+function Home({ handleAllowed, user }) {
   const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
@@ -21,6 +21,22 @@ function Home() {
       }
     });
   }
+
+  useEffect(() => {
+    if(!user) {
+      fetch('/views')
+      .then(response=>response.json())
+      .then(json => {
+        console.log(json.views)
+
+        if (json.views>0) {
+          handleAllowed(true);
+        } else{
+          handleAllowed(false);
+        }
+      })
+    }
+  },[])
 
   return (
     <section className="container">

@@ -28,11 +28,15 @@ function Home() {
     setRestaurant({
       data: {
         ...restaurant,
-        pizzas: [...restaurant.pizzas, newPizza],
+        pizzas: [...restaurant.pizzas, newPizza]
       },
       error: null,
       status: "resolved",
     });
+    console.log({
+          ...restaurant,
+          pizzas: [...restaurant.pizzas, newPizza]
+        });
   }
 
   if (status === "pending") return <h1>Loading...</h1>;
